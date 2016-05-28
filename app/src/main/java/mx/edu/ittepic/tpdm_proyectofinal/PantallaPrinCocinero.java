@@ -1,9 +1,10 @@
 package mx.edu.ittepic.tpdm_proyectofinal;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class PantallaPrinCocinero extends AppCompatActivity {
+public class PantallaPrinCocinero extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package mx.edu.ittepic.tpdm_proyectofinal;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,7 +19,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class Splash extends AppCompatActivity {
+public class Splash extends Activity {
     Lienzo lienzo;
 
 
@@ -28,7 +29,6 @@ public class Splash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.setTitle("");
         lienzo = new Lienzo(this);
         setContentView(lienzo);
 

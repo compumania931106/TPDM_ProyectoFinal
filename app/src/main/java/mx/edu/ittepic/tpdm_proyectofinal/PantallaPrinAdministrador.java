@@ -1,11 +1,12 @@
 package mx.edu.ittepic.tpdm_proyectofinal;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class PantallaPrinAdministrador extends AppCompatActivity {
+public class PantallaPrinAdministrador extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

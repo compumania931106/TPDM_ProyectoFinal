@@ -1,9 +1,10 @@
 package mx.edu.ittepic.tpdm_proyectofinal;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class PantallaPrinMesero extends AppCompatActivity {
+public class PantallaPrinMesero extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

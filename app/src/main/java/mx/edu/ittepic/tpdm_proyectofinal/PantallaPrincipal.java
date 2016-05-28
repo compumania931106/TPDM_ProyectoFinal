@@ -1,6 +1,7 @@
 package mx.edu.ittepic.tpdm_proyectofinal;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PantallaPrincipal extends AppCompatActivity {
+public class PantallaPrincipal extends Activity {
     EditText usu,pas;
     String usuario,password;
     Button entrar;

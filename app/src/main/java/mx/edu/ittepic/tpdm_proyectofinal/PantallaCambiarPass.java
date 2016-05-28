@@ -1,5 +1,6 @@
 package mx.edu.ittepic.tpdm_proyectofinal;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.Toast;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PantallaCambiarPass extends AppCompatActivity {
+public class PantallaCambiarPass extends Activity {
 
     EditText passV,passN,comprobar;
     String pv,pn,pc;
