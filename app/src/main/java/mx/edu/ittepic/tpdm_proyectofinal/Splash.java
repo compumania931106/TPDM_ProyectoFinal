@@ -64,6 +64,7 @@ public class Splash extends Activity {
 
             @Override
             public void onFinish() {
+                alpha= 255;
                 timer.cancel();
 
                 if (!verificaConexion(Splash.this)) {
@@ -104,13 +105,14 @@ public class Splash extends Activity {
 
     public class Lienzo extends View {
 
-        Bitmap logo,puntos;
+        Bitmap logo,puntos, fondo;
 
         public Lienzo(Context context) {
             super(context);
 
             logo = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
             puntos = BitmapFactory.decodeResource(getResources(),R.drawable.low);
+            fondo = BitmapFactory.decodeResource(getResources(),R.drawable.fondosplash);
 
 
 
@@ -119,6 +121,7 @@ public class Splash extends Activity {
         public void onDraw(Canvas canvas) {
             Paint p = new Paint();
             canvas.drawColor(Color.argb(202, 233, 218, 171));
+            canvas.drawBitmap(fondo,0,0,p);
 
             x= (canvas.getWidth() / 2) - (logo.getWidth() / 2);
             y= (canvas.getHeight() / 2) - (logo.getHeight() / 2);
@@ -126,8 +129,6 @@ public class Splash extends Activity {
             xr = (canvas.getWidth()/2) - (puntos.getWidth() / 2);
             yr = (canvas.getHeight()/2) - (puntos.getHeight() / 2) + (logo.getHeight() / 2) + 20;
 
-            p.setTextSize(30);
-            canvas.drawText(contador+"",78,90,p);
             canvas.drawBitmap(puntos,xr,yr,p);
             p.setAlpha(alpha);
             canvas.drawBitmap(logo, x, y, p);

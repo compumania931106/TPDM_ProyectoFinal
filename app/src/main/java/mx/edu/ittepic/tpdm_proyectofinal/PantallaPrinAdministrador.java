@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class PantallaPrinAdministrador extends Activity {
+public class PantallaPrinAdministrador extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
