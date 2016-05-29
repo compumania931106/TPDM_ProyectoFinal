@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id= "@+id/actmesa" android:title="Actualizar mesas" android:orderInCategory="100"/>
+    <item android:id="@+id/menu" android:title="Menú" android:orderInCategory="101"/>
+    <item android:id="@+id/expord" android:title="Exportar ordenes" android:orderInCategory="102"/>
+    <item android:id="@+id/cerrar" android:title="Cerrar sesión" android:orderInCategory="103"/>
+</menu>
