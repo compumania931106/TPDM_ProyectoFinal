@@ -1,10 +1,13 @@
 package mx.edu.ittepic.tpdm_proyectofinal;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +25,7 @@ public class PantallaPersonalAdministrador extends AppCompatActivity {
 
         listaPersonal = (ListView) findViewById(R.id.listView2);
 
+
     }
 
     public boolean onCreateOptionsMenu(Menu m){
@@ -30,6 +34,7 @@ public class PantallaPersonalAdministrador extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem mi) {
+
         return true;
     }
 }

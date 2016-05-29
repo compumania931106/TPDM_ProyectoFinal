@@ -25,7 +25,8 @@
         <activity android:name=".PantallaPrinMesero" />
         <activity android:name=".PantallaPrinCocinero" />
         <activity android:name=".PantallaOrdenes" />
-        <activity android:name=".PantallaPersonalAdministrador"></activity>
+        <activity android:name=".PantallaPersonalAdministrador" />
+        <activity android:name=".PantallaMenu"></activity>
     </application>
 
 </manifest>

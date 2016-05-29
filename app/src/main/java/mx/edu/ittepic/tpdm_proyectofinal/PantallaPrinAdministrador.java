@@ -31,6 +31,9 @@ public class PantallaPrinAdministrador extends AppCompatActivity {
                     case 0:
                         break;
                     case 1:
+                        Intent abrirMenu2 = new Intent(PantallaPrinAdministrador.this,PantallaMenu.class);
+                        abrirMenu2.putExtra("usu",1);
+                        startActivity(abrirMenu2);
                         break;
                     default:
                 }

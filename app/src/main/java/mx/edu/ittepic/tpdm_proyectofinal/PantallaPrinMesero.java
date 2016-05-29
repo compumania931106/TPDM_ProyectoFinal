@@ -1,6 +1,7 @@
 package mx.edu.ittepic.tpdm_proyectofinal;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -36,6 +37,20 @@ public class PantallaPrinMesero extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem mi) {
+        switch (mi.getItemId()) {
+            case R.id.actmesa:
+                break;
+            case R.id.menu:
+                Intent abrirMenu = new Intent(PantallaPrinMesero.this,PantallaMenu.class);
+                abrirMenu.putExtra("usu",0);
+                startActivity(abrirMenu);
+                break;
+            case R.id.expord:
+                //exportar ordenes
+                break;
+            default:
+                //cerrar sesion
+        }
         return true;
     }
 
@@ -43,4 +58,9 @@ public class PantallaPrinMesero extends AppCompatActivity {
     public void onBackPressed() {
         Toast.makeText(this, "Debe cerrar sesion primero.", Toast.LENGTH_SHORT).show();
     }
+
+
+
+
+
 }

@@ -81,9 +81,9 @@ public class Splash extends Activity {
                             }).
                             setNegativeButton("No", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                public void onClick(DialogInterface dialogInterface, int which) {
                                     onFinish();
-                                    dialog.cancel();
+                                    dialogInterface.cancel();
                                 }
                             })
                             .show();
