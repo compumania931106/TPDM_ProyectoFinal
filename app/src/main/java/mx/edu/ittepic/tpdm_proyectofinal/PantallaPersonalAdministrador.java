@@ -1,34 +1,35 @@
 package mx.edu.ittepic.tpdm_proyectofinal;
 
-import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
-public class PantallaPrinCocinero extends AppCompatActivity {
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class PantallaPersonalAdministrador extends AppCompatActivity {
+    ListView listaPersonal;
+    String contenido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setTitle("");
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        setContentView(R.layout.activity_pantalla_prin_cocinero);
+        setContentView(R.layout.activity_pantalla_personal_administrador);
+
+        listaPersonal = (ListView) findViewById(R.id.listView2);
+
     }
 
     public boolean onCreateOptionsMenu(Menu m){
-        this.getMenuInflater().inflate(R.menu.menucoc, m);
+        this.getMenuInflater().inflate(R.menu.menuagregarpersonal, m);
         return super.onCreateOptionsMenu(m);
     }
 
     public boolean onOptionsItemSelected(MenuItem mi) {
         return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(this, "Debe cerrar sesion primero.", Toast.LENGTH_SHORT).show();
     }
 }

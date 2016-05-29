@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class PantallaPrinMesero extends AppCompatActivity {
     ImageView mesa1, mesa2, mesa3, mesa4, mesa5;
@@ -36,5 +37,10 @@ public class PantallaPrinMesero extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem mi) {
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "Debe cerrar sesion primero.", Toast.LENGTH_SHORT).show();
     }
 }

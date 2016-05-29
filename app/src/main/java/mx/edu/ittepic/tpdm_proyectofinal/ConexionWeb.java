@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
@@ -33,6 +34,8 @@ public class ConexionWeb extends AsyncTask<URL,String,String> {
         this.tipo = tipo;
         puntero = p;
     }
+
+
 
     public void agregarVariables(String identificador,String dato){
         String [] temp= {identificador,dato};
@@ -104,20 +107,16 @@ public class ConexionWeb extends AsyncTask<URL,String,String> {
                 puntero.startActivity(i);
             }
             if(res.equals("ADMINISTRADOR")){
-                Intent adm = new Intent(puntero,PantallaPrinAdministrador.class);
-                puntero.startActivity(adm);
+                ejecutarBD("ADMINISTRADOR");
             }
             if(res.equals("CAJERO")){
-                Intent caj = new Intent(puntero,PantallaPrinCajero.class);
-                puntero.startActivity(caj);
+                ejecutarBD("CAJERO");
             }
             if(res.equals("MESERO")){
-                Intent mesero = new Intent(puntero,PantallaPrinMesero.class);
-                puntero.startActivity(mesero);
+                ejecutarBD("MESERO");
             }
             if(res.equals("COCINERO")){
-                Intent cocinero = new Intent(puntero,PantallaPrinCocinero.class);
-                puntero.startActivity(cocinero);
+                ejecutarBD("COCINERO");
             }
         }
         if(tipo == 2){
@@ -128,4 +127,12 @@ public class ConexionWeb extends AsyncTask<URL,String,String> {
             }
         }
     }
+
+    private void ejecutarBD(String ventana){
+        LlenarBDlocal ll = new LlenarBDlocal(puntero,ventana);
+        try{
+            ll.execute(new URL("http://ittepic-tpdm.6te.net/proyectofinal/recuperarcontenido.php"));
+        }catch (MalformedURLException e){}
+    }
+
 }

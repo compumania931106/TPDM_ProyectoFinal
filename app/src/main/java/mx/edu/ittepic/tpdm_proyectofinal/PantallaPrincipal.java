@@ -19,6 +19,7 @@ public class PantallaPrincipal extends Activity {
     EditText usu,pas;
     String usuario,password;
     Button entrar;
+    ConexionBD conexion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,7 @@ public class PantallaPrincipal extends Activity {
         usu = (EditText) findViewById(R.id.editText);
         pas = (EditText) findViewById(R.id.editText2);
         entrar = (Button) findViewById(R.id.button);
+        conexion = new ConexionBD(this, "Restaurant",null,1);
 
 
         usu.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -67,6 +69,10 @@ public class PantallaPrincipal extends Activity {
 
 
     }
+    public void onBackPressed() {
+
+    }
+
 
 
     public String getUsuario() {

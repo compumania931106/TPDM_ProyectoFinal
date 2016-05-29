@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TPDM_ProyectoFinal</string>
+    <array name="arraymenuadmin">
+        <item>Personal</item>
+        <item>Menu</item>
+        <item>Reportes</item>
+    </array>
 </resources>
