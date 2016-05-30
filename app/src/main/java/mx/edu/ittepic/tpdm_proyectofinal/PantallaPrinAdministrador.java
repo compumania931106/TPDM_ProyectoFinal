@@ -29,6 +29,8 @@ public class PantallaPrinAdministrador extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch(position){
                     case 0:
+                        Intent personal = new Intent(PantallaPrinAdministrador.this, PantallaPersonalAdministrador.class);
+                        startActivity(personal);
                         break;
                     case 1:
                         Intent abrirMenu2 = new Intent(PantallaPrinAdministrador.this,PantallaMenu.class);

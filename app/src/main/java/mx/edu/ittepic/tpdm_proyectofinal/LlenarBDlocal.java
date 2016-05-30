@@ -110,57 +110,62 @@ public class LlenarBDlocal extends AsyncTask<URL,String,String>{
     }
 
     protected void onPostExecute(String res){
-        SQLiteDatabase base = conexion.getWritableDatabase();
-        base.execSQL("DELETE FROM Categoria");
-        base.execSQL("DELETE FROM Menu");
-        base.execSQL("DELETE FROM DetallePago");
-        base.execSQL("DELETE FROM Usuario");
+        if(res.length() < 15){
+            Toast.makeText(puntero,"Problemas con la conexion",Toast.LENGTH_SHORT).show();
+        }else {
+            SQLiteDatabase base = conexion.getWritableDatabase();
+            base.execSQL("DELETE FROM Categoria");
+            base.execSQL("DELETE FROM Menu");
+            base.execSQL("DELETE FROM DetallePago");
+            base.execSQL("DELETE FROM Usuario");
 
-        String[] tablas = res.split("%");
+            String[] tablas = res.split("%");
 
-        progressDialog.setMessage("Exportando los datos a su base de datos local");
-        for(int i = 0; i<tablas.length;i++){
-            String[] datos = tablas[i].split(";");
-            for(int j = 0; j < datos.length; j++){
-                switch(i){
-                    case 0:
-                        base.execSQL("INSERT INTO Categoria VALUES (" + datos[j].replaceAll("-", ",") + ")");
-                        //Toast.makeText(puntero,"Tabla 0 " + datos[j].replaceAll("-",","),Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        base.execSQL("INSERT INTO Menu VALUES (" + datos[j].replaceAll("-", ",") + ")");
-                        //Toast.makeText(puntero,"Tabla 1 " + datos[j].replaceAll("-",","),Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        base.execSQL("INSERT INTO DetallePago VALUES (" + datos[j].replaceAll("-", ",") + ")");
-                        //Toast.makeText(puntero,"Tabla 2 " + datos[j].replaceAll("-",","),Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                        base.execSQL("INSERT INTO Usuario VALUES (" + datos[j].replaceAll("-", ",") + ")");
-                        //Toast.makeText(puntero,"Tabla 3 " + datos[j].replaceAll("-",","),Toast.LENGTH_SHORT).show();
+            progressDialog.setMessage("Exportando los datos a su base de datos local");
+            for(int i = 0; i<tablas.length;i++){
+                String[] datos = tablas[i].split(";");
+                for(int j = 0; j < datos.length; j++){
+                    switch(i){
+                        case 0:
+                            base.execSQL("INSERT INTO Categoria VALUES (" + datos[j].replaceAll("-", ",") + ")");
+                            //Toast.makeText(puntero,"Tabla 0 " + datos[j].replaceAll("-",","),Toast.LENGTH_SHORT).show();
+                            break;
+                        case 1:
+                            base.execSQL("INSERT INTO Menu VALUES (" + datos[j].replaceAll("-", ",") + ")");
+                            //Toast.makeText(puntero,"Tabla 1 " + datos[j].replaceAll("-",","),Toast.LENGTH_SHORT).show();
+                            break;
+                        case 2:
+                            base.execSQL("INSERT INTO DetallePago VALUES (" + datos[j].replaceAll("-", ",") + ")");
+                            //Toast.makeText(puntero,"Tabla 2 " + datos[j].replaceAll("-",","),Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            base.execSQL("INSERT INTO Usuario VALUES (" + datos[j].replaceAll("-", ",") + ")");
+                            //Toast.makeText(puntero,"Tabla 3 " + datos[j].replaceAll("-",","),Toast.LENGTH_SHORT).show();
+                    }
+
                 }
+            }
+            progressDialog.dismiss();
 
+            switch (ventana){
+                case "ADMINISTRADOR":
+                    Intent adm = new Intent(puntero,PantallaPrinAdministrador.class);
+                    puntero.startActivity(adm);
+                    break;
+                case "CAJERO":
+                    Intent adc = new Intent(puntero,PantallaPrinCajero.class);
+                    puntero.startActivity(adc);
+                    break;
+                case "MESERO":
+                    Intent admm = new Intent(puntero,PantallaPrinMesero.class);
+                    puntero.startActivity(admm);
+                    break;
+                default:
+                    Intent adcoc = new Intent(puntero,PantallaPrinCocinero.class);
+                    puntero.startActivity(adcoc);
             }
         }
-        progressDialog.dismiss();
 
-        switch (ventana){
-            case "ADMINISTRADOR":
-                Intent adm = new Intent(puntero,PantallaPrinAdministrador.class);
-                puntero.startActivity(adm);
-                break;
-            case "CAJERO":
-                Intent adc = new Intent(puntero,PantallaPrinCajero.class);
-                puntero.startActivity(adc);
-                break;
-            case "MESERO":
-                Intent admm = new Intent(puntero,PantallaPrinMesero.class);
-                puntero.startActivity(admm);
-                break;
-            default:
-                Intent adcoc = new Intent(puntero,PantallaPrinCocinero.class);
-                puntero.startActivity(adcoc);
-        }
 
     }
 }
