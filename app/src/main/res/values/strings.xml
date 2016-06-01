@@ -5,4 +5,12 @@
         <item>Menu</item>
         <item>Reportes</item>
     </array>
+
+    <array name="spinneraddpersonal">
+        <item>Administrador</item>
+        <item>Mesero</item>
+        <item>Cocinero</item>
+        <item>Cajero</item>
+    </array>
+
 </resources>
