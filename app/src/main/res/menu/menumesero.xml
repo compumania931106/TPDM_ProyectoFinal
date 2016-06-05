@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/additem" android:title="Agregar items" android:orderInCategory="100"></item>
+    <item android:id="@+id/cerrarorden" android:title="Cerrar orden" android:orderInCategory="101"></item>
+</menu>

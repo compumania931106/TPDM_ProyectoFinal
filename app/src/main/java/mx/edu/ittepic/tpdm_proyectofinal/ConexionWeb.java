@@ -126,6 +126,9 @@ public class ConexionWeb extends AsyncTask<URL,String,String> {
                 puntero.startActivity(log);
             }
         }
+        if(tipo == 3){
+            Toast.makeText(puntero, res, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void ejecutarBD(String ventana){

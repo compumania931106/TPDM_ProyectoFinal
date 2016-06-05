@@ -38,18 +38,18 @@ public class PantallaPersonalAdministrador extends AppCompatActivity {
         listaPersonal.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                String[] opciones = {"Editar","Eliminar","Cancelar"};
+                String[] opciones = {"Editar", "Eliminar", "Cancelar"};
                 AlertDialog.Builder alert = new AlertDialog.Builder(PantallaPersonalAdministrador.this);
                 alert.setTitle("Opciones");
                 //alert.setMessage("Seleccione la opcion que desea realizar");
                 alert.setItems(opciones, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        switch(which){
+                        switch (which) {
                             case 0:
                                 Intent pantallaadd = new Intent(PantallaPersonalAdministrador.this, PantallaAddPersonal.class);
                                 String dato = mPersonal[position][0] + "," + mPersonal[position][1] + "," + mPersonal[position][2] + "," + mPersonal[position][3] + "," + mPersonal[position][4] + "," + mPersonal[position][5] + "," + mPersonal[position][6];
-                                pantallaadd.putExtra("dato",dato);
+                                pantallaadd.putExtra("dato", dato);
                                 startActivity(pantallaadd);
                                 break;
                             case 1:
@@ -93,7 +93,13 @@ public class PantallaPersonalAdministrador extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem mi) {
-
+        switch(mi.getItemId()){
+            case R.id.add:
+                Intent add = new Intent(PantallaPersonalAdministrador.this, PantallaAddPersonal.class);
+                add.putExtra("dato","");
+                startActivity(add);
+                break;
+        }
         return true;
     }
 
@@ -144,5 +150,37 @@ public class PantallaPersonalAdministrador extends AppCompatActivity {
             return null;
         }
         return matriz;
+    }
+
+    private String obtenerTablaUsuario(){
+        String contenido = "";
+        SQLiteDatabase base = conexion.getReadableDatabase();
+        Cursor c = base.rawQuery("SELECT * FROM Usuario",null);
+
+        if(!c.moveToFirst()){
+            return null;
+        }else{
+            do{
+                contenido = contenido + "'" +c.getString(0) + "','" + c.getString(1) + "','" + c.getString(2) + "','" +
+                         c.getString(3) + "','" + c.getString(4) + "','" + c.getString(5) + "','" + c.getString(6) + "','" +
+                         c.getString(7) + "';";
+            }while(c.moveToNext());
+            base.close();
+        }
+        contenido = contenido.substring(0,contenido.length()-1);
+        return contenido;
+    }
+
+    public void onBackPressed() {
+        ConexionWeb con = new ConexionWeb(PantallaPersonalAdministrador.this,3);
+        //Toast.makeText(PantallaPersonalAdministrador.this, obtenerTablaUsuario(), Toast.LENGTH_LONG).show();
+        con.agregarVariables("dat", obtenerTablaUsuario());
+        try {
+            con.execute(new URL("http://ittepic-tpdm.6te.net/proyectofinal/exportarusuario.php"));
+        }catch(MalformedURLException e){
+            Toast.makeText(PantallaPersonalAdministrador.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        Intent regreso = new Intent(PantallaPersonalAdministrador.this,PantallaPrinAdministrador.class);
+        startActivity(regreso);
     }
 }

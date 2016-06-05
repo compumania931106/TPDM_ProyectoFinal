@@ -118,6 +118,7 @@ public class LlenarBDlocal extends AsyncTask<URL,String,String>{
             base.execSQL("DELETE FROM Menu");
             base.execSQL("DELETE FROM DetallePago");
             base.execSQL("DELETE FROM Usuario");
+            base.execSQL("DELETE FROM Mesa");
 
             String[] tablas = res.split("%");
 
@@ -138,15 +139,19 @@ public class LlenarBDlocal extends AsyncTask<URL,String,String>{
                             base.execSQL("INSERT INTO DetallePago VALUES (" + datos[j].replaceAll("-", ",") + ")");
                             //Toast.makeText(puntero,"Tabla 2 " + datos[j].replaceAll("-",","),Toast.LENGTH_SHORT).show();
                             break;
-                        default:
+                        case 3:
                             base.execSQL("INSERT INTO Usuario VALUES (" + datos[j].replaceAll("-", ",") + ")");
                             //Toast.makeText(puntero,"Tabla 3 " + datos[j].replaceAll("-",","),Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            base.execSQL("INSERT INTO Mesa VALUES (" + datos[j].replaceAll("-", ",") + ")");
+
                     }
 
                 }
             }
             progressDialog.dismiss();
-
+            String user = "";
             switch (ventana){
                 case "ADMINISTRADOR":
                     Intent adm = new Intent(puntero,PantallaPrinAdministrador.class);

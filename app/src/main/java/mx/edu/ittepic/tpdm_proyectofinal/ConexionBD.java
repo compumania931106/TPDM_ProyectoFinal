@@ -27,7 +27,7 @@ public class ConexionBD extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Menu (idItem INTEGER PRIMARY KEY, idCategoria INTEGER, nombre VARCHAR(60), " +
                 "descripcion VARCHAR(200), precio DECIMAL(13,2), disponibilidad CHAR(1)," +
                 "FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria))");
-        db.execSQL("CREATE TABLE Mesa(idMesa INTEGER PRIAMRY KEY, capacidad INTEGER, disponibilidad CHAR(1))");
+        db.execSQL("CREATE TABLE Mesa(idMesa INTEGER PRIMARY KEY, capacidad INTEGER, disponibilidad CHAR(1))");
         db.execSQL("CREATE TABLE Orden (idOrden INTEGER PRIMARY KEY AUTOINCREMENT, idMesa INTEGER, idUsuario INTEGER, " +
                 "fechaPedido DATE, horaPedido TIME, status CHAR(1),totalPagar DECIMAL(13,2)," +
                 "FOREIGN KEY (idMesa) REFERENCES Mesa(idMesa)," +

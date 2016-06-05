@@ -13,4 +13,12 @@
         <item>Cajero</item>
     </array>
 
+    <array name="spinnercategorias">
+        <item>Entrada</item>
+        <item>Platos fuertes</item>
+        <item>Comida rápida</item>
+        <item>Bebidas</item>
+        <item>Postres</item>
+    </array>
+
 </resources>

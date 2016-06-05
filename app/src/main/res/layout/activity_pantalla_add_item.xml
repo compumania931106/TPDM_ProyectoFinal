@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="mx.edu.ittepic.tpdm_proyectofinal.PantallaOrdenes"
+    tools:context="mx.edu.ittepic.tpdm_proyectofinal.PantallaAddItem"
     android:background="@drawable/fondousers"
     android:weightSum="1">
 
@@ -16,25 +16,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Mesero"
-        android:id="@+id/textView8"
-        android:textColor="#000000" />
+        android:text="Mesero:"
+        android:id="@+id/textView17" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="26dp"
+        android:layout_height="31dp"
         android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Categoria:"
+            android:id="@+id/textView18" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner3"
+            android:entries="@array/spinnercategorias"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="342dp"
-        android:id="@+id/listView4"
-        android:layout_weight="0.63" />
-
-    <Button
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button5"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/listView5" />
 </LinearLayout>
