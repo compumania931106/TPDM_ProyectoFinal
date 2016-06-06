@@ -31,6 +31,8 @@ public class PantallaOrdenes extends AppCompatActivity {
 
         idPedido = getIntent().getIntExtra("id",0);
 
+        Toast.makeText(PantallaOrdenes.this, idPedido + "", Toast.LENGTH_SHORT).show();
+
         conexion = new ConexionBD(PantallaOrdenes.this,"Restaurant",null,1);
 
         llenarLista();
@@ -72,7 +74,7 @@ public class PantallaOrdenes extends AppCompatActivity {
         String[][] matriz = null;
         try{
             SQLiteDatabase base = conexion.getReadableDatabase();
-            Cursor c = base.rawQuery("SELECT * FROM DetalleOrden WHERE idDetalleOrden = "+ idPedido +"",null);
+            Cursor c = base.rawQuery("SELECT * FROM DetalleOrden WHERE idOrden = "+ idPedido +"",null);
 
             if(!c.moveToFirst()){
                 return null;

@@ -2,6 +2,7 @@ package mx.edu.ittepic.tpdm_proyectofinal;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class PantallaAddItem extends AppCompatActivity {
     String[][] aMenu;
     Archivos archivos;
     ConexionBD conexion;
+    int idOrden = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,12 +62,12 @@ public class PantallaAddItem extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int idCategoria = categorias.getSelectedItemPosition() + 1;
-                int idItem = Integer.parseInt(aMenu[position][0]);
+                final int idItem = Integer.parseInt(aMenu[position][0]);
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(PantallaAddItem.this);
                 alert.setTitle("¡Atencion!");
                 alert.setMessage("Ingrese la cantidad");
-                EditText cam = new EditText(PantallaAddItem.this);
+                final EditText cam = new EditText(PantallaAddItem.this);
                 alert.setView(cam);
                 alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
@@ -79,17 +81,25 @@ public class PantallaAddItem extends AppCompatActivity {
                             Cursor c = base.rawQuery("SELECT * FROM Orden WHERE idMesa = " + mesaID + " AND idUsuario = '" + idUsuario[0] + "' AND status = 'P'", null);
 
                             if (c.moveToLast()) {
-                                //Hacer esto...
+                                base.execSQL("INSERT INTO DetalleOrden (idOrden, idItem, cantidad) VALUES ("+ c.getInt(0) +","+idItem+","+ Integer.parseInt(cam.getText().toString()) +")");
                             } else {
+
                                 base.execSQL("INSERT INTO Orden (idMesa, idUsuario, fechaPedido, horaPedido, status) VALUES (" + mesaID + ", '" + idUsuario[0] + "', '" + fechaActual + "', '" + horaActual + "', 'P')");
-                                base.execSQL("");
+
+                                Cursor id = base.rawQuery("SELECT idOrden FROM Orden WHERE idOrden = (SELECT MAX(idOrden) FROM Orden)", null);
+                                if (id.moveToFirst()) {
+                                   idOrden = id.getInt(0);
+                                }
+
+
+                                base.execSQL("INSERT INTO DetalleOrden (idOrden, idItem, cantidad) VALUES ("+ idOrden +","+idItem+","+ Integer.parseInt(cam.getText().toString()) +")");
                             }
 
 
                             base.close();
-                            Toast.makeText(PantallaAddItem.this, fechaActual + " : " + horaActual, Toast.LENGTH_SHORT).show();
-                        }catch(Exception e){
-
+                            //Toast.makeText(PantallaAddItem.this, fechaActual + " : " + horaActual, Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Toast.makeText(PantallaAddItem.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -144,5 +154,12 @@ public class PantallaAddItem extends AppCompatActivity {
             return null;
         }
         return matriz;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent back = new Intent(PantallaAddItem.this,PantallaOrdenes.class);
+        back.putExtra("id",idOrden);
+        startActivity(back);
     }
 }
