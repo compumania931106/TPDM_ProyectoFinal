@@ -11,12 +11,20 @@
     tools:context="mx.edu.ittepic.tpdm_proyectofinal.PantallaPersonalAdministrador"
     android:background="@drawable/fondousers">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textView20"
+        android:textColor="#000000" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView2"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp" />
+        android:layout_marginTop="28dp" />
 
 </LinearLayout>

@@ -14,19 +14,26 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class PantallaAddItem extends AppCompatActivity {
     Spinner categorias;
     ListView lista;
     int idCategoria = 0;
+    int mesaID = 0;
     String[][] aMenu;
+    Archivos archivos;
     ConexionBD conexion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setTitle("");
         setContentView(R.layout.activity_pantalla_add_item);
+        archivos = new Archivos(this);
         conexion = new ConexionBD(PantallaAddItem.this,"Restaurant",null,1);
-
+        mesaID = getIntent().getExtras().getInt("id");
         AlertDialog.Builder entrada = new AlertDialog.Builder(PantallaAddItem.this);
         entrada.setTitle("Confirme su nombre de usuario");
         entrada.setMessage("Ingrese su nombre de usuario");
@@ -63,8 +70,28 @@ public class PantallaAddItem extends AppCompatActivity {
                 alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SQLiteDatabase base = conexion.getWritableDatabase();
-                        base.execSQL("");
+                        String idUsuario[] = archivos.leerSD().split(",");
+                        Date fecha = new Date();
+                        String fechaActual = new SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(Calendar.getInstance().getTime());
+                        String horaActual = new SimpleDateFormat("HH:MM:SS", java.util.Locale.getDefault()).format(Calendar.getInstance().getTime());
+                        try {
+                            SQLiteDatabase base = conexion.getWritableDatabase();
+                            Cursor c = base.rawQuery("SELECT * FROM Orden WHERE idMesa = " + mesaID + " AND idUsuario = '" + idUsuario[0] + "' AND status = 'P'", null);
+
+                            if (c.moveToLast()) {
+                                //Hacer esto...
+                            } else {
+                                base.execSQL("INSERT INTO Orden (idMesa, idUsuario, fechaPedido, horaPedido, status) VALUES (" + mesaID + ", '" + idUsuario[0] + "', '" + fechaActual + "', '" + horaActual + "', 'P')");
+                                base.execSQL("");
+                            }
+
+
+                            base.close();
+                            Toast.makeText(PantallaAddItem.this, fechaActual + " : " + horaActual, Toast.LENGTH_SHORT).show();
+                        }catch(Exception e){
+
+                        }
+
                     }
                 });
                 alert.show();

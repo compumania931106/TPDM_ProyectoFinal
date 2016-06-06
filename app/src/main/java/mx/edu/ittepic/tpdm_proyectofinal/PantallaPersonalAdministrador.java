@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.MalformedURLException;
@@ -22,15 +23,23 @@ import java.net.URL;
 
 public class PantallaPersonalAdministrador extends AppCompatActivity {
     ListView listaPersonal;
+    TextView titulo;
     String contenido;
     ConexionBD conexion;
     String[][] mPersonal;
+    Archivos archivos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_personal_administrador);
         this.setTitle("");
+
+        archivos = new Archivos(PantallaPersonalAdministrador.this);
+        titulo = (TextView) findViewById(R.id.textView20);
+        titulo.setText(archivos.llenarTitulo());
+
+
         listaPersonal = (ListView) findViewById(R.id.listView2);
         conexion = new ConexionBD(PantallaPersonalAdministrador.this,"Restaurant",null,1);
         llenarLista();

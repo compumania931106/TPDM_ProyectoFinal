@@ -18,7 +18,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class PantallaPrinMesero extends AppCompatActivity {
     ImageView mesa1, mesa2, mesa3, mesa4, mesa5;
@@ -26,6 +29,8 @@ public class PantallaPrinMesero extends AppCompatActivity {
     ConexionBD conexion;
     String numeroMesa="", disponible="";
     String user = "";
+    TextView titulo;
+    Archivos archivos;
 
     BroadcastReceiver recibidorMensajsSMS = null;
     String smsTratar = "";
@@ -38,6 +43,10 @@ public class PantallaPrinMesero extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.setTitle("");
         setContentView(R.layout.activity_pantalla_prin_mesero);
+
+        titulo = (TextView) findViewById(R.id.textView2);
+        archivos = new Archivos(PantallaPrinMesero.this);
+        titulo.setText(archivos.llenarTitulo());
 
         user = getIntent().getStringExtra("user");
         Toast.makeText(PantallaPrinMesero.this, user, Toast.LENGTH_SHORT).show();
@@ -71,7 +80,7 @@ public class PantallaPrinMesero extends AppCompatActivity {
                     ocuparMesa("m1");
                 } else {
                     Intent order = new Intent(PantallaPrinMesero.this, PantallaOrdenes.class);
-                    order.putExtra("id", 1);
+                    order.putExtra("id",1);
                     startActivity(order);
                 }
             }

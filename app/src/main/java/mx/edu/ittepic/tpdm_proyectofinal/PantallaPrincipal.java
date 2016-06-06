@@ -20,6 +20,7 @@ public class PantallaPrincipal extends Activity {
     String usuario,password;
     Button entrar;
     ConexionBD conexion;
+    Archivos archivos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,7 @@ public class PantallaPrincipal extends Activity {
         pas = (EditText) findViewById(R.id.editText2);
         entrar = (Button) findViewById(R.id.button);
         conexion = new ConexionBD(this, "Restaurant",null,1);
+        archivos = new Archivos(PantallaPrincipal.this);
 
 
         usu.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -48,8 +50,7 @@ public class PantallaPrincipal extends Activity {
                 if(!(usuario.equals("") && password.equals(""))){
                     //Toast.makeText(PantallaPrincipal.this,usuario,Toast.LENGTH_LONG).show();
                     try{
-                        Datos d = new Datos();
-                        d.setUsuario(usuario);
+                        archivos.escribirSD(usuario + "," + password);
                         ConexionWeb con = new ConexionWeb(PantallaPrincipal.this,1);
                         con.usuario = usuario;
                         con.agregarVariables("usu",usu.getText().toString());

@@ -15,6 +15,7 @@ public class PantallaOrdenes extends AppCompatActivity {
 
     ListView lista;
     int idPedido = 0;
+    int idMesa = 0;
     ConexionBD conexion;
     String[][] contenido;
     String item = "";
@@ -25,6 +26,7 @@ public class PantallaOrdenes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.setTitle("");
         setContentView(R.layout.activity_pantalla_ordenes);
+        idMesa = getIntent().getExtras().getInt("id");
         lista = (ListView)findViewById(R.id.listView4);
 
         idPedido = getIntent().getIntExtra("id",0);
@@ -102,6 +104,7 @@ public class PantallaOrdenes extends AppCompatActivity {
         switch(mi.getItemId()){
             case R.id.additem:
                 Intent ventanaItem = new Intent(PantallaOrdenes.this, PantallaAddItem.class);
+                ventanaItem.putExtra("id",idMesa);
                 startActivity(ventanaItem);
                 break;
         }

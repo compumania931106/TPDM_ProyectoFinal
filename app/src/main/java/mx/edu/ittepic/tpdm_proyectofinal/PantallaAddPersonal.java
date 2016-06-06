@@ -11,21 +11,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class PantallaAddPersonal extends AppCompatActivity {
     String datos;
+    TextView titulo;
     EditText id, nombre,apaterno,amaterno,pass,num;
     Spinner puesto;
     Button aceptar;
     Boolean decision;
     ConexionBD conexion;
+    Archivos archivos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setTitle("");
         setContentView(R.layout.activity_pantalla_add_personal);
+
+        archivos = new Archivos(PantallaAddPersonal.this);
+        titulo = (TextView) findViewById(R.id.textView9);
+        titulo.setText(archivos.llenarTitulo());
 
         conexion = new ConexionBD(this, "Restaurant",null,1);
 

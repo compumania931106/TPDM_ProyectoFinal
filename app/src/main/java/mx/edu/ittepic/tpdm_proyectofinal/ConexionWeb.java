@@ -106,17 +106,20 @@ public class ConexionWeb extends AsyncTask<URL,String,String> {
                 Intent i = new Intent(puntero,PantallaCambiarPass.class);
                 puntero.startActivity(i);
             }
-            if(res.equals("ADMINISTRADOR")){
+            else if(res.equals("ADMINISTRADOR")){
                 ejecutarBD("ADMINISTRADOR");
             }
-            if(res.equals("CAJERO")){
+            else if(res.equals("CAJERO")){
                 ejecutarBD("CAJERO");
             }
-            if(res.equals("MESERO")){
+            else if(res.equals("MESERO")){
                 ejecutarBD("MESERO");
             }
-            if(res.equals("COCINERO")){
+            else if(res.equals("COCINERO")){
                 ejecutarBD("COCINERO");
+            }
+            else{
+                Toast.makeText(puntero, "Error al ingresar los datos", Toast.LENGTH_SHORT).show();
             }
         }
         if(tipo == 2){
@@ -127,7 +130,7 @@ public class ConexionWeb extends AsyncTask<URL,String,String> {
             }
         }
         if(tipo == 3){
-            Toast.makeText(puntero, res, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(puntero, res, Toast.LENGTH_SHORT).show();
         }
     }
 
